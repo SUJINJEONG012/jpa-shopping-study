@@ -126,6 +126,7 @@ class ItemRepositoryTest {
     			.orderBy(qItem.price.desc());
     	
     	List<Item> itemList = query.fetch();
+    	
     	for(Item item : itemList) {
     		System.out.println(item.toString());
     	}
