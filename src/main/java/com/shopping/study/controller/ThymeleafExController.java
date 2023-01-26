@@ -33,7 +33,7 @@ public class ThymeleafExController {
 		return "thymeleaf/thymeleaf02";
 	}
 	
-	@GetMapping(value="ex03")
+	@GetMapping(value="/ex03")
 	public String thymeleafExample03(Model model) {
 		List<ItemDto> itemDtoList = new ArrayList<>();
 		
@@ -48,6 +48,42 @@ public class ThymeleafExController {
 		}
 		model.addAttribute("itemDtoList", itemDtoList);	//화면에서 출력할 itemDtoList를 model에 담아서 View에 전딜
 		return "thymeleaf/thymeleaf03";
+	}
+	
+	
+	@GetMapping(value="/ex04")
+	public String thymeleafExample04(Model model) {
+		List<ItemDto> itemDtoList = new ArrayList<>();
+		
+		for(int i = 1; i<=10; i++) {
+		ItemDto itemDto = new ItemDto();
+		
+		itemDto.setItemNm("상품명" + i);
+		itemDto.setItemDetail("상품상세설명" + i);
+		itemDto.setPrice(10000 * i);
+		itemDto.setRegTime(LocalDateTime.now());
+		itemDtoList.add(itemDto);
+		}
+		
+		model.addAttribute("itemDtoList" , itemDtoList);
+		return "thymeleaf/thymeleaf04";
+	}
+	
+	@GetMapping(value="/ex05")
+	public String thymeleafExample05() {
+		return "thymeleaf/thymeleaf05";
+	}
+	
+	@GetMapping(value="/ex06")
+	public String thymeleafExample06(String param1, String param2, Model model) {
+		model.addAttribute("param1", param1);
+		model.addAttribute("param2", param2);
+		return "thymeleaf/thymeleaf06";
+	}
+	
+	@GetMapping(value="/ex07")
+	public String thymeleafExample07() {
+		return "thymeleaf/thymeleaf07";
 	}
 
 }
