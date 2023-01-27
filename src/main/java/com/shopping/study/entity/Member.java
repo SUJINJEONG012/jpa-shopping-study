@@ -12,14 +12,14 @@ import javax.persistence.Table;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.shopping.study.constant.Role;
-import com.shopping.study.dto.UserFormDto;
+import com.shopping.study.dto.MemberFormDto;
 
 import lombok.Data;
 
 @Entity
-@Table(name="user")
+@Table(name="member")
 @Data
-public class User {
+public class Member {
 
 	@Id
 	@Column(name="user_id")
@@ -50,19 +50,19 @@ public class User {
 	 * 유저 엔티티에 회원을 생성하는 메서드를 만들어서 관리를한다면 
 	 * 코드가 변경되더라도 한 군데만 수정하면 되는 이점이 있다. 
 	 * */
-	public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
-		User user = new User();
+	public static Member createUser(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
+		Member member = new Member();
 		
-		user.setName(userFormDto.getName());
-		user.setEmail(userFormDto.getEmail());
-		user.setAddress(userFormDto.getAddress());
+		member.setName(memberFormDto.getName());
+		member.setEmail(memberFormDto.getEmail());
+		member.setAddress(memberFormDto.getAddress());
 		
 		// 스프링 시큐리티 설정을 클래스에 등록한 BCryptPassword Bean을 파라미터로 넘겨서 비밀번호를 암호화
-		String password = passwordEncoder.encode(userFormDto.getPassword());
-		user.setPassword(password);
-		user.setRole(Role.USER);
+		String password = passwordEncoder.encode(memberFormDto.getPassword());
+		member.setPassword(password);
+		member.setRole(Role.USER);
 		
-		return user;
+		return member;
 	}
 	
 	

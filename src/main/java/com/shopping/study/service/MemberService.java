@@ -2,26 +2,26 @@ package com.shopping.study.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.shopping.study.entity.User;
-import com.shopping.study.repository.UserRepository;
+import com.shopping.study.entity.Member;
+import com.shopping.study.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService  {
+public class MemberService  {
 
-	private final UserRepository userRepository;
+	private final MemberRepository memberRepository;
 	
-	public User saveUser(User user) {
-		validateDuplicateUser(user);
-		return userRepository.save(user);
+	public Member saveUser(Member member) {
+		validateDuplicateUser(member);
+		return memberRepository.save(member);
 	}
 	
 	//이미 가입된 회원일 경우 예외처리
-	private void validateDuplicateUser(User user) {
-		User findUser = userRepository.findByEmail(user.getEmail());
+	private void validateDuplicateUser(Member member) {
+		Member findUser = memberRepository.findByEmail(member.getEmail());
 		
 		if(findUser != null) {
 			

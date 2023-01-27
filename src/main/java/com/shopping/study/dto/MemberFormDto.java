@@ -2,10 +2,11 @@ package com.shopping.study.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class UserFormDto {
+public class MemberFormDto {
 	
 	private String name;
 	
@@ -14,4 +15,5 @@ public class UserFormDto {
 	private String password;
 	
 	private String address;
+	
 }
