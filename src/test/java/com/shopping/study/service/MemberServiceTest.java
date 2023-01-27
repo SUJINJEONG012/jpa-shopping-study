@@ -49,6 +49,7 @@ class MemberServiceTest {
 		assertEquals(member.getAddress(), savedUser.getAddress());
 		assertEquals(member.getPassword(), savedUser.getPassword());
 		assertEquals(member.getRole(), savedUser.getRole());
+		System.out.println("@@@@" + savedUser);
 		
 	}
 	
