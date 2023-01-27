@@ -22,9 +22,11 @@ public class UserService  {
 	//이미 가입된 회원일 경우 예외처리
 	private void validateDuplicateUser(User user) {
 		User findUser = userRepository.findByEmail(user.getEmail());
-		if(findUser != null) {
-			throw new IllegalStateException("이미가입된 회원입니다.!");
-		}
 		
+		if(findUser != null) {
+			
+			throw new IllegalStateException("이미 가입된 회원입니다.");
+		}	
 	}
+	
 }

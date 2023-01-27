@@ -30,9 +30,10 @@ public class User {
 	
 	//회원은 이메일을 통해유일하게 구분해야 하기때문에 동일한 값이 데이터베이스에 들어올 수 없도록 unique속성 지정
 	@Column(unique = true)
-	private String Email;
+	private String email;
 	
 	private String password;
+	
 	private String address;
 	
 	/*
@@ -51,9 +52,11 @@ public class User {
 	 * */
 	public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
 		User user = new User();
+		
 		user.setName(userFormDto.getName());
 		user.setEmail(userFormDto.getEmail());
 		user.setAddress(userFormDto.getAddress());
+		
 		// 스프링 시큐리티 설정을 클래스에 등록한 BCryptPassword Bean을 파라미터로 넘겨서 비밀번호를 암호화
 		String password = passwordEncoder.encode(userFormDto.getPassword());
 		user.setPassword(password);

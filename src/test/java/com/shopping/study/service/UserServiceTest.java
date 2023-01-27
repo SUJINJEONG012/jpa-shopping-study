@@ -12,7 +12,6 @@ import com.shopping.study.dto.UserFormDto;
 import com.shopping.study.entity.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @SpringBootTest
@@ -28,8 +27,8 @@ public class UserServiceTest {
 	
 	public User createUser() {
 		UserFormDto userFormDto = new UserFormDto();
-		userFormDto.setEmail("test@naver.com");
 		userFormDto.setName("정수진");
+		userFormDto.setEmail("test@naver.com");
 		userFormDto.setAddress("부산광역시 수영구 ");
 		userFormDto.setPassword("1234");
 		return User.createUser(userFormDto, passwordEncoder);
@@ -38,9 +37,8 @@ public class UserServiceTest {
 	
 	
 	@Test
-	@DisplayName("회원가입테스트")
+	@DisplayName("회원가입 테스트")
 	public void saveUserTest() {
-		
 		User user = createUser();
 		User savedUser = userService.saveUser(user);
 		
