@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-public class MemberFormDto {
+public class UserFormDto {
 	
 	private String name;
 	

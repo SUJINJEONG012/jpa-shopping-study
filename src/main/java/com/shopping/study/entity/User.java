@@ -1,5 +1,6 @@
 package com.shopping.study.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,14 +13,18 @@ import javax.persistence.Table;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.shopping.study.constant.Role;
-import com.shopping.study.dto.MemberFormDto;
+import com.shopping.study.dto.UserFormDto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="member")
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class Member {
+@Table(name="user")
+public class User {
 
 	@Id
 	@Column(name="user_id")
@@ -28,7 +33,7 @@ public class Member {
 	
 	private String name;
 	
-	//회원은 이메일을 통해유일하게 구분해야 하기때문에 동일한 값이 데이터베이스에 들어올 수 없도록 unique속성 지정
+	//회원은 이메일을 통해 유일하게 구분해야 하기때문에 동일한 값이 데이터베이스에 들어올 수 없도록 unique속성 지정
 	@Column(unique = true)
 	private String email;
 	
@@ -50,19 +55,19 @@ public class Member {
 	 * 유저 엔티티에 회원을 생성하는 메서드를 만들어서 관리를한다면 
 	 * 코드가 변경되더라도 한 군데만 수정하면 되는 이점이 있다. 
 	 * */
-	public static Member createUser(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
-		Member member = new Member();
+	public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
+		User user = new User();
 		
-		member.setName(memberFormDto.getName());
-		member.setEmail(memberFormDto.getEmail());
-		member.setAddress(memberFormDto.getAddress());
+		user.setName(userFormDto.getName());
+		user.setEmail(userFormDto.getEmail());
+		user.setAddress(userFormDto.getAddress());
 		
 		// 스프링 시큐리티 설정을 클래스에 등록한 BCryptPassword Bean을 파라미터로 넘겨서 비밀번호를 암호화
-		String password = passwordEncoder.encode(memberFormDto.getPassword());
-		member.setPassword(password);
-		member.setRole(Role.USER);
+		String password = passwordEncoder.encode(userFormDto.getPassword());
+		user.setPassword(password);
+		user.setRole(Role.USER);
 		
-		return member;
+		return user;
 	}
 	
 	

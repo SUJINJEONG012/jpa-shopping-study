@@ -5,8 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.shopping.study.dto.MemberFormDto;
-import com.shopping.study.service.MemberService;
+import com.shopping.study.dto.UserFormDto;
+import com.shopping.study.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,11 +15,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberController {
 	
-	private final MemberService memberService;
+	private final UserService userService;
 	
 	@GetMapping(value="/new")
-	public String memberForm(MemberFormDto memberFormDto, Model model ) {
-		model.addAttribute("memberFormDto", memberFormDto);
+	public String memberForm(UserFormDto userFormDto, Model model ) {
+		model.addAttribute("memberFormDto", userFormDto);
 		return "members/memberForm";
 	}
 }
