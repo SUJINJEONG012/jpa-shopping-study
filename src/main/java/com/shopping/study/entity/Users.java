@@ -1,6 +1,8 @@
 package com.shopping.study.entity;
 
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,10 +14,12 @@ import javax.persistence.Table;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 import com.shopping.study.constant.Role;
 import com.shopping.study.dto.UserFormDto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,8 +27,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name="user")
-public class User {
+@Builder
+@Table(name="users")
+public class Users {
 
 	@Id
 	@Column(name="user_id")
@@ -55,20 +60,25 @@ public class User {
 	 * 유저 엔티티에 회원을 생성하는 메서드를 만들어서 관리를한다면 
 	 * 코드가 변경되더라도 한 군데만 수정하면 되는 이점이 있다. 
 	 * */
-	public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
-		User user = new User();
+	public static Users createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
+		Users users = new Users();
 		
-		user.setName(userFormDto.getName());
-		user.setEmail(userFormDto.getEmail());
-		user.setAddress(userFormDto.getAddress());
+		users.setName(userFormDto.getName());
+		users.setEmail(userFormDto.getEmail());
+		users.setAddress(userFormDto.getAddress());
 		
 		// 스프링 시큐리티 설정을 클래스에 등록한 BCryptPassword Bean을 파라미터로 넘겨서 비밀번호를 암호화
 		String password = passwordEncoder.encode(userFormDto.getPassword());
-		user.setPassword(password);
-		user.setRole(Role.USER);
+		users.setPassword(password);
+		users.setRole(Role.USER);
 		
-		return user;
+		return users;
 	}
+
+	
+	
+	
+	
 	
 	
 }

@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopping.study.dto.UserFormDto;
-import com.shopping.study.entity.User;
-import com.shopping.study.service.UserService;
+import com.shopping.study.entity.Users;
+import com.shopping.study.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UserController {
+public class UsersController {
 	
-	private final UserService userService;
+	private final UsersService usersService;
 	private final PasswordEncoder passwordEncoder;
 	
 	@GetMapping(value="/new")
@@ -39,9 +39,9 @@ public class UserController {
 		}
 		
 		try {
-			User user = User.createUser(userFormDto, passwordEncoder);
-			userService.saveUser(user);
-			System.out.println("@@@@@ 입력한거 저장되는지확인하기" + user);
+			Users users = Users.createUser(userFormDto, passwordEncoder);
+			usersService.saveUser(users);
+			System.out.println("@@@@@ 입력한거 저장되는지확인하기" + users);
 		}catch(IllegalStateException e) {
 			model.addAttribute("errorMessage", e.getMessage());
 			return "user/userForm";

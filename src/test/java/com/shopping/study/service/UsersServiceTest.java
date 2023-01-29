@@ -2,7 +2,7 @@ package com.shopping.study.service;
 
 
 import com.shopping.study.dto.UserFormDto;
-import com.shopping.study.entity.User;
+import com.shopping.study.entity.Users;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,35 +20,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @Transactional
 @TestPropertySource(locations="classpath:application-test.properties")
-class UserServiceTest {
+class UsersServiceTest {
 
 	@Autowired
-	UserService userService;
+	UsersService usersService;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	public User createUser() {
+	public Users createUser() {
 		UserFormDto userFormDto = new UserFormDto();
 		userFormDto.setName("정수진");
 		userFormDto.setEmail("test@naver.com");
 		userFormDto.setAddress("부산광역시 수영구 ");
 		userFormDto.setPassword("1234");
-		return User.createUser(userFormDto, passwordEncoder);
+		return Users.createUser(userFormDto, passwordEncoder);
 	}
 	
 	
 	@Test
 	@DisplayName("회원가입 테스트")
 	public void saveUserTest() {
-		User user = createUser();
-		User savedUser = userService.saveUser(user);
+		Users users = createUser();
+		Users savedUser = usersService.saveUser(users);
 	
-		assertEquals(user.getName(), savedUser.getName());
-		assertEquals(user.getEmail(), savedUser.getEmail());
-		assertEquals(user.getAddress(), savedUser.getAddress());
-		assertEquals(user.getPassword(), savedUser.getPassword());
-		assertEquals(user.getRole(), savedUser.getRole());
+		assertEquals(users.getName(), savedUser.getName());
+		assertEquals(users.getEmail(), savedUser.getEmail());
+		assertEquals(users.getAddress(), savedUser.getAddress());
+		assertEquals(users.getPassword(), savedUser.getPassword());
+		assertEquals(users.getRole(), savedUser.getRole());
 		System.out.println("@@@@" + savedUser);
 		
 	}
