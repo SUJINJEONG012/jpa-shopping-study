@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import com.shopping.study.constant.Role;
-import com.shopping.study.dto.UserFormDto;
+import com.shopping.study.dto.UsersFormDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -60,15 +60,15 @@ public class Users {
 	 * 유저 엔티티에 회원을 생성하는 메서드를 만들어서 관리를한다면 
 	 * 코드가 변경되더라도 한 군데만 수정하면 되는 이점이 있다. 
 	 * */
-	public static Users createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder) {
+	public static Users createUser(UsersFormDto usersFormDto, PasswordEncoder passwordEncoder) {
 		Users users = new Users();
 		
-		users.setName(userFormDto.getName());
-		users.setEmail(userFormDto.getEmail());
-		users.setAddress(userFormDto.getAddress());
+		users.setName(usersFormDto.getName());
+		users.setEmail(usersFormDto.getEmail());
+		users.setAddress(usersFormDto.getAddress());
 		
 		// 스프링 시큐리티 설정을 클래스에 등록한 BCryptPassword Bean을 파라미터로 넘겨서 비밀번호를 암호화
-		String password = passwordEncoder.encode(userFormDto.getPassword());
+		String password = passwordEncoder.encode(usersFormDto.getPassword());
 		users.setPassword(password);
 		users.setRole(Role.USER);
 		

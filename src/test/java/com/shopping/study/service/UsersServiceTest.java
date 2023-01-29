@@ -1,7 +1,7 @@
 package com.shopping.study.service;
 
 
-import com.shopping.study.dto.UserFormDto;
+import com.shopping.study.dto.UsersFormDto;
 import com.shopping.study.entity.Users;
 
 import org.junit.jupiter.api.DisplayName;
@@ -29,12 +29,12 @@ class UsersServiceTest {
 	PasswordEncoder passwordEncoder;
 	
 	public Users createUser() {
-		UserFormDto userFormDto = new UserFormDto();
-		userFormDto.setName("정수진");
-		userFormDto.setEmail("test@naver.com");
-		userFormDto.setAddress("부산광역시 수영구 ");
-		userFormDto.setPassword("1234");
-		return Users.createUser(userFormDto, passwordEncoder);
+		UsersFormDto usersFormDto = new UsersFormDto();
+		usersFormDto.setName("정수진");
+		usersFormDto.setEmail("test@naver.com");
+		usersFormDto.setAddress("부산광역시 수영구 ");
+		usersFormDto.setPassword("1234");
+		return Users.createUser(usersFormDto, passwordEncoder);
 	}
 	
 	

@@ -11,8 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserFormDto {
-
+public class UsersFormDto {
 	
 	@NotBlank(message="이름은 필수 값 입니다.")
 	private String name;

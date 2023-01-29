@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shopping.study.entity.Users;
 import com.shopping.study.repository.UsersRepository;
 
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -40,6 +39,7 @@ public class UsersService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+		
 		Users users = usersRepository.findByEmail(email);
 		
 		if(users == null) {
