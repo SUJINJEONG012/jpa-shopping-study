@@ -30,6 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	
+	//회원등록
 	public Users createUsers(String email, String password) {
 		UsersFormDto usersFormDto = new UsersFormDto();
 		usersFormDto.setName("정수진");
@@ -37,7 +39,7 @@ import org.springframework.transaction.annotation.Transactional;
 		usersFormDto.setAddress("부산광역시 수영구 광안동");
 		usersFormDto.setPassword(password);	
 		
-		Users users = users.createUser(usersFormDto, passwordEncoder);
+		Users users = Users.createUser(usersFormDto, passwordEncoder);
 		return usersService.saveUser(users);
 	}
 	
