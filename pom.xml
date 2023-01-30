@@ -54,8 +54,11 @@
 			
 		</dependency>
 		
-		
-		
+		<!-- 메뉴노출되는거 의존성 -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
 		
 		
 		

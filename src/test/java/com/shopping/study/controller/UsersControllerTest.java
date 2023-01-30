@@ -35,8 +35,8 @@ class UsersControllerTest {
 	// 회원등록
 	public Users createUsers(String email, String password) {
 		UsersFormDto usersFormDto = new UsersFormDto();
-		usersFormDto.setName("정수진");
 		usersFormDto.setEmail(email);
+		usersFormDto.setName("정수진");
 		usersFormDto.setAddress("부산광역시 수영구 광안동");
 		usersFormDto.setPassword(password);
 
@@ -57,19 +57,25 @@ class UsersControllerTest {
 				.user(email)
 				.password(password))
 				.andExpect(SecurityMockMvcResultMatchers.authenticated());
+		
+		System.out.println("로그인 성공 테스트 :: " + email);
+		System.out.println("로그인 성공 테스트 :: " +  password);
 
 	}
 	
 	@Test
 	@DisplayName("로그인 실패 테스트")
 	public void loginFailTest() throws Exception {
-		String email= "test@gmail.com";
+		String email= "test@naver.com";
 		String password = "1234";
 		mockMvc.perform(formLogin().userParameter("email")
 				.loginProcessingUrl("/user/login")
 				.user(email).password("12345"))
 		.andExpect(SecurityMockMvcResultMatchers.unauthenticated());
+		
+		System.out.println("로그인 실패 테스트 :"  + email);
 	}
+	
 	
 	
 
