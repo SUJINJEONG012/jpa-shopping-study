@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,18 +34,21 @@ public class SecurityConfig {
 				.logoutSuccessUrl("/"); //로그아웃 성공시 URL
 
 		
-//		http.authorizeRequests()
-//        .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
-//		.mvcMatchers("/", "/users/**", "/item/**", "/images/**")
-//		.permitAll()
-//		.mvcMatchers("/admin/**")
-//		.hasRole("ADMIN").anyRequest().authenticated();
-
-//		http.exceptionHandling()
-//        .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+		http.authorizeRequests()
+        		.mvcMatchers("/css/**", "/js/**", "/images/**").permitAll()
+        		.mvcMatchers("/", "/user/**", "/item/**", "/images/**").permitAll()
+        		.mvcMatchers("/admin/**").hasRole("ADMIN")
+        		.anyRequest().authenticated();
+		
+		
+		http.exceptionHandling()
+        .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+		
 		return http.build();
 	
 	}
+
+
 
 	/*
 	 * 비밀번호를 데이터베이스에 그대로 저장했을 경우, 데이터베이스가 해킹당하면 고객의 회원 정보가 그대로 노출 된다. 이를 해결하기 위해
